@@ -651,8 +651,7 @@ c carrier frequency:
 
 Survival probability starts at 1 for both carrier and non-carrier. then for $i=0, ... 90 $,
 
-$$\begin{align}
-ffncbr_0 &= 1 \\
+$$\begin{align}ffncbr_0 &= 1 \\
 ffbr_0 &= 1 \\
 \lambda_0^0 &= \frac{popbr_0/100000}{p_1 + p_2 * rrbr_0^2} \\
 \lambda_0^1 &= \lambda_i^0 * rrbr_0 \\
@@ -661,8 +660,7 @@ ffbr_0 &= 1 \\
 cumncbr &= cumncbr + \lambda_t^0  \\
 ffncbr_{i+1} &= \exp(-cumncbr) \\
 cumbrrisk &= cumbrrisk+\lambda_i^1 \\
-ffbr_{i+1} &= \exp(-cumbrrisk)
-\end{align}$$
+ffbr_{i+1} &= \exp(-cumbrrisk)\end{align}$$
 
 ```fortran
 c initialise survival probabilities:
@@ -758,27 +756,23 @@ c---------------------------------------------------------------------
 
 
 
-$$
-pen =\Biggl\{
+$$pen =\Biggl\{
 \begin{array}{ll}
 ffncbr_{age}& is=1, idis=0, (non-carrier, unaffected)\\
 ffncbr_{age} * \lambda_{age}^0& is=1, idis=1, (non-carrier, affected)\\
 ffbr_{age} & is=2, idis=0, (carrier, unaffected) \\
 ffbr_{age} * \lambda_{age}^1& is=2, idis=1, (carrier, affected)\\
-\end{array}
-$$
+\end{array}$$
 
 If age == 0
 
-$$
-pen =\Biggl\{
+$$pen =\Biggl\{
 \begin{array}{ll}
 1& is=1, idis=0, (non-carrier, unaffected)\\
 1 * \lambda_{0}^0& is=1, idis=1, (non-carrier, affected)\\
 1 & is=2, idis=0, (carrier, unaffected) \\
 1 * \lambda_{0}^1& is=2, idis=1, (carrier, affected)\\
-\end{array}
-$$
+\end{array}$$
 
 ```fortran
          if(is.eq.1) then
