@@ -586,18 +586,15 @@ If $age > 90$, assume $idis=0$ and $age=90$.
 
 Calculate relative risk using a linear model
 
-$$
-rrbr_i = \exp ({
+$$rrbr_i = \exp ({
     \frac{par_N - par_{N-1}}{ (age_{N-1} - age_{N-2}) }
-       * (i - age_{N-2}) + par_{N-1}})
-$$
+       * (i - age_{N-2}) + par_{N-1}})$$
+
 for  $age_{N-1} < i < age_N$ of each age group.
 
 Using a piece-wise model
 
-$$
-rrbr_i = \exp(par_N)
-$$
+$$rrbr_i = \exp(par_N)$$
 for $age_{N-1} < i < age_N$ each age group.
 
 
@@ -654,8 +651,7 @@ c carrier frequency:
 
 Survival probability starts at 1 for both carrier and non-carrier. then for $i=0, ... 90 $,
 
-$$
-\begin{align}
+$$\begin{align}
 ffncbr_0 &= 1 \\
 ffbr_0 &= 1 \\
 \lambda_0^0 &= \frac{popbr_0/100000}{p_1 + p_2 * rrbr_0^2} \\
@@ -666,8 +662,7 @@ cumncbr &= cumncbr + \lambda_t^0  \\
 ffncbr_{i+1} &= \exp(-cumncbr) \\
 cumbrrisk &= cumbrrisk+\lambda_i^1 \\
 ffbr_{i+1} &= \exp(-cumbrrisk)
-\end{align}
-$$
+\end{align}$$
 
 ```fortran
 c initialise survival probabilities:
