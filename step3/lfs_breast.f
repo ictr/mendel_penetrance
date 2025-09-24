@@ -1,3 +1,6 @@
+C
+C  
+C
 C  Program for computing breast cancer penetrance using family data.
 C  TP53 data for  Clare Turnbull.
 C  This version assumes  fixed background incidences independent of birth cohort.
@@ -26,12 +29,12 @@ C     DEFAULT VALUES FOR THE PROBLEM MENU.
 C
       DATA TITLE,LOCFIL/'TP53_data','locusbr.dat'/
       DATA PEDFIL,OUTFIL/'pedigree.txt','single_out.dat'/
-      DATA ECHO,XXSIGN,XYSIGN,NVAR/.FALSE.,'F','M',2/
+      DATA ECHO,XXSIGN,XYSIGN,NVAR/.FALSE.,'F','M',7/
       DATA EXTRA/100*0.0D0/
       DATA LNAME/'MAJOR',9*' '/
-      DATA MUTLOC,XXRATE,XYRATE,COND/' ',0.0d0,0.0d0,2/
+      DATA MUTLOC,XXRATE,XYRATE,COND/' ',0.0001199d0,0.0001199d0,2/
       DATA BASE,STAND,TRAVEL,NPOINT/'E',.FALSE.,'SEARCH',1/
-      DATA NPAR,NCNSTR,ASYCV,MXITER/1,0,.TRUE.,100/
+      DATA NPAR,NCNSTR,ASYCV,MXITER/3,0,.TRUE.,599/
 C
 C     THE ARRAYS AND VARIABLES BEGIN A LONG DESCENT INTO THE
 C     PROGRAM.  SAY GOODBYE TO THEM AND WISH THEM LUCK.
@@ -62,7 +65,7 @@ C
       CHARACTER*8 PNAME(NPAR),TRAVEL
       LOGICAL XLINK(NLOCI)
 
-      double precision   popbr(0:79)
+      double precision   popbr(0:89)
 
       common /popincid/popbr
 
@@ -77,19 +80,25 @@ C-----------------------------------------------------------------------
 
       pname(1)='RR'
 
+      CALL RANDOM_SEED()
 
-      par(1)=0.5d0
-      parmin(1) =  0.0d0
-      parmax(1) =  10.0d0
-
+      DO I=1,NPAR
+        par(I) = 0.5d0
+        parmin(I) =  0.0d0
+        parmax(I) =  5.0d0
+        IF ( par(I) .EQ. 0.0d0 ) THEN
+            CALL RANDOM_NUMBER(HARVEST)
+            par(I) = parmin(I) + HARVEST * (parmax(I) - parmin(I))
+        ENDIF
+      END DO
 
 
 C----------------------------------------------------------------
 C  Read in the population incidence rates for England and Wales 1993-97
 c  per 100000 population.
 C----------------------------------------------------------------
-
-      data  popbr/12.991,
+      
+           data  popbr/12.991,
      :12.991,
      :12.991,
      :12.991,
@@ -175,24 +184,23 @@ C----------------------------------------------------------------
      :1085.937,
      :1085.937,
      :1085.937,
-     :1085.937 /
+     :1085.937,
 
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937,
-c     :1085.937/
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937,
+     :1085.937/
+     
+
+
 
       END
-
-
-
-
 
       SUBROUTINE OUTPUT(EXTRA,PAR,SCORE,PNAME,LOGLIK,FINAL,ITER,MAXPAR
      1,NEXTRA,NPAR,NSTEP,UNIT3,BASE,TRAVEL,STAND,UMOVE)
@@ -254,7 +262,7 @@ C     THAN .5.
 
 c Ascertainment part should follow as the second half of the predigrees:
 
-c      if(ped.gt.nped/2) loglik=-loglik
+C     if(ped.gt.nped/2) loglik=-loglik
 
 
       END
@@ -291,14 +299,14 @@ C
       INTEGER GENES(FIRST:LAST,2,NGTYPE)
       LOGICAL XLINK(NLOCI)
 
-      double precision  rrbr(0:79)
+      double precision  rrbr(0:89)
       double precision  cumbrrisk
-      double precision  popbr(0:79)
-      double precision  ffbr(0:80)
-      double precision  ffncbr(0:80)
+      double precision  popbr(0:89)
+      double precision  ffbr(0:90)
+      double precision  ffncbr(0:90)
       double precision  cumncbr
       double precision  p1, p2
-      double precision  lambda(0:79,0:1)
+      double precision  lambda(0:89,0:1)
 
 
       integer i
@@ -414,12 +422,12 @@ c	write(*,*) agebc,ageoc,ageother,agelfu,agedeath,age,idis
 
 
 c---------------------------------------------------------------------
-c Censor at age 80
+c Censor at age 90
 c---------------------------------------------------------------------
 
-       if(age.ge.80) then
+       if(age.ge.90) then
           idis=0
-          age=80
+          age=90
        endif
 
 
@@ -429,33 +437,17 @@ c relative risks. In the fixed incidence version, no Rel Risk applies
 c to non-carriers.
 c---------------------------------------------------------------------
 
-       do i=0,79
-          if(i.lt.20) then
-            rrbr(i) = 1.0d0
-          elseif(i.lt.25) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.30) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.35) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.40) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.45) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.50) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.55) then
+      
+       do i=0,89
+          if(i.lt.30) then
             rrbr(i) = exp(par(1))
           elseif(i.lt.60) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.65) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.70) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.80) then
-           rrbr(i) = exp(par(1))
+            rrbr(i) = exp(par(2))
+          else
+            rrbr(i) = exp(par(3))
           endif
        end do
+      
 
 
 c---------------------------------------------------------------------
@@ -485,13 +477,14 @@ c initialise sums:
        cumbrrisk=0.0d0
 
 
-       do iage=0,79
+       do iage=0,89
 
           lambda(iage,0)=(popbr(iage)/100000.0d0)*
      :             (p1*ffncbr(iage)+p2*ffbr(iage))/
      :              (p1*ffncbr(iage)+p2*rrbr(iage)*ffbr(iage))
 
           lambda(iage,1)=lambda(iage,0)*rrbr(iage)
+
 
 
 c---------------------------------------------------------------------
@@ -515,7 +508,6 @@ c---------------------------------------------------------------------
 
 
        end do
-
 
 
 
@@ -553,9 +545,11 @@ c Assume that males do not develop either cancer and specify the penetrance
 c for each male as 1*fact
 c---------------------------------------------------------------------
 
+
       if(isex.eq.1) then
-         pen(i)=1.0d0
+           pen(i)=1.0d0
       else
+
 
 c---------------------------------------------------------------------
 c Non-Carriers develop the cancers according to population specific rates.
@@ -620,7 +614,9 @@ c=====================================================================
 
 
 
+
       endif
+
 
 c	write(*,*) ped, per, age, pen(i)
 
