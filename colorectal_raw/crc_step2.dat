@@ -1,0 +1,1191 @@
+
+ TOTALS:  PEDIGREES   PEOPLE  FEMALES    MALES  MZTWINS FOUNDERS
+              1783    64921    33160    31761        0    26269
+ 
+  0 PROBLEM NUMBER                     1                                      
+  1 TITLE                              TP53_data                              
+  2 LOCUS FILE                         locusbr.dat                            
+  3 PEDIGREE FILE                      pedigree.txt                           
+  4 OUTPUT FILE                        single_out.dat                         
+  5 ECHO LOCUS AND PEDIGREE FILES      NO                                     
+  6 FEMALE AND MALE SYMBOLS            F       M                              
+  7 NUMBER OF QUANTITATIVE VARIABLES   2                                      
+  8 EXTRA CONSTANTS FOR PROBLEM        0.0     0.0     0.0     0.0     0.0    
+  9 NAMES OF LOCI IN PROBLEM           MAJOR                                  
+ 10 NAME OF MUTABLE LOCUS IN PROBLEM                                          
+ 12 PEDIGREE TO CONDITION ON           2                                      
+ 13 BASE FOR LOGLIKELIHOODS            E                                      
+ 14 STANDARDIZE LOGLIKELIHOODS         NO                                     
+ 15 GRID OR SEARCH OPTION              SEARCH                                 
+ 17 NUMBER OF PARAMETERS               1                                      
+ 18 NUMBER OF CONSTRAINTS              0                                      
+ 19 ASYMPTOTIC STANDARD ERRORS         YES                                    
+ 20 MAXIMUM NUMBER OF ITERATIONS       100                                    
+
+ PARAMETER MINIMA AND MAXIMA:
+
+    RR      
+
+  0.0000D+00
+
+  0.1000D+02
+
+ ITER  NSTEP  LOGLIKELIHOOD    RR      
+
+   1     0   -0.1905784D+05  0.5000D+00
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+   2     1   -0.1885329D+05  0.1450D+01
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+   3     1   -0.1864996D+05  0.2305D+01
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   11
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   16
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    13467 near   20
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    7
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near    9
+
+IERROR IGNORED on    15513 near   10
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15513 near   16
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near    4
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15531 near   21
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near    1
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near   14
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near    7
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15586 near   15
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15641 near    3
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near   11
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    15730 near    7
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    1
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near    2
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near   10
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    3
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    6
+
+IERROR IGNORED on    16087 near    7
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16087 near   28
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near    1
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   18
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   19
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   39
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   38
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16200 near   22
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   10
+
+IERROR IGNORED on    16210 near   35
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on    16210 near    9
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   11
+
+IERROR IGNORED on     9629 near   10
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    1
+
+IERROR IGNORED on     9629 near    3
+
+IERROR IGNORED on     9629 near    8
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    2
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    4
+
+IERROR IGNORED on     9629 near    5
+
+IERROR IGNORED on     9629 near   12
+
+IERROR IGNORED on     9629 near   12
+
+   4     1   -0.1847942D+05  0.3075D+01
+
+   5     1   -0.1835275D+05  0.3867D+01
+
+   6     0   -0.1833939D+05  0.4819D+01
+
+   7     0   -0.1832074D+05  0.4363D+01
+
+   8     0   -0.1832027D+05  0.4421D+01
+
+   9     0   -0.1832027D+05  0.4427D+01
+
+  10     0   -0.1832027D+05  0.4427D+01
+
+  11     0   -0.1832027D+05  0.4427D+01
+
+  12     1   -0.1832027D+05  0.4427D+01
+
+  13     1   -0.1832027D+05  0.4427D+01
+
+  14     3   -0.1832027D+05  0.4427D+01
+
+ THE MAXIMUM LOGLIKELIHOOD OCCURS AT ITERATION  13.
+
+ ASYMPTOTIC STANDARD ERRORS OF THE PARAMETERS:
+
+    RR      
+
+  0.6544D-01
+
+ ASYMPTOTIC CORRELATION MATRIX OF THE PARAMETERS:
+
+    RR      
+
+  0.1000D+01
