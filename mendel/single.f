@@ -1,21 +1,22 @@
 C  Program for computing breast cancer penetrance using family data.
-C  TP53 data for  Clare Turnbull.
-C  This version assumes  fixed background incidences independent of birth cohort.
+C  TP53 data for  Clare Turnbull. 
+C  This version assumes  fixed background incidences independent of birth cohort. 
+C  Breast Cancer incidences for England and Wales
 
 
-      PARAMETER(LENC=100,LENI=100000,LENL=100,LENR=1000000,MXLOCI=10
+      PARAMETER(LENC=100,LENI=100000,LENL=100,LENR=1000000,MXLOCI=10   
      :,NEXTRA=100)
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
       DOUBLE PRECISION EXTRA(NEXTRA),RARRAY(LENR)
       INTEGER IARRAY(LENI),COND
-      CHARACTER*8 CARRAY(LENC),LNAME(MXLOCI),BASE,BATFIL*40,LOCFIL*40
+      CHARACTER*8 CARRAY(LENC),LNAME(MXLOCI),BASE,BATFIL*40,LOCFIL*40   
      :,MUTLOC,OUTFIL*40,PEDFIL*40,TITLE*40,TRAVEL,XXSIGN,XYSIGN
       LOGICAL LARRAY(LENL),ASYCV,ECHO,LUMP,ORDERD,PMODE,STAND
 C
 C     DEFAULT VALUES FOR SOME VARIABLES.  TO RUN THE PROGRAM IN
 C     BATCH MODE FILL IN THE NAME OF THE BATCH FILE BATFIL.  SET
 C     PMODE TO TRUE TO DO CALCULATIONS IN PRODUCT MODE AND LUMP
-C     TO TRUE TO AMALGAMATE ALLELES AT EACH LOCUS.
+C     TO TRUE TO AMALGAMATE ALLELES AT EACH LOCUS. 
 C
       DATA MXTWIN,ABSENT/10,-1.0D20/
       DATA CONV,NCONV,MXSTEP,DP/1.0D-7,4,3,1.0D-7/
@@ -35,7 +36,6 @@ C
 C     THE ARRAYS AND VARIABLES BEGIN A LONG DESCENT INTO THE
 C     PROGRAM.  SAY GOODBYE TO THEM AND WISH THEM LUCK.
 C
-CB      write(*,*) "CALL MENDEL with", EXTRA
       CALL MENDEL(EXTRA,RARRAY,IARRAY,CARRAY,LNAME,LARRAY,ABSENT
      :,CONV,DP,XXRATE,XYRATE,COND,LENC,LENI,LENL,LENR,MXITER,MXLOCI
      :,MXSTEP,MXTWIN,NCNSTR,NCONV,NEXTRA,NPAR,NPOINT,NVAR,BASE,BATFIL
@@ -51,7 +51,7 @@ C
 C     IN THIS SUBROUTINE THE USER SHOULD DEFINE THE INITIAL
 C     PARAMETER VALUES, THE PARAMETER BOUNDS, AND THE LINEAR
 C     EQUALITY CONSTRAINTS FOR A LIKELIHOOD SEARCH.  WHEN A
-C     GRID OF LIKELIHOOD VALUES IS DESIRED, THEN ONLY DEFINE
+C     GRID OF LIKELIHOOD VALUES IS DESIRED, THEN ONLY DEFINE 
 C     THE ARRAY GRID.  PARAMETER NAMES CAN BE OPTIONALLY INPUT.
 C
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -64,9 +64,8 @@ C
 
       double precision   popbr(0:79)
 
-C BP: population incidence, for breast cancer
       common /popincid/popbr
-
+      
 
 
 C-----------------------------------------------------------------------
@@ -78,12 +77,10 @@ C-----------------------------------------------------------------------
 
       pname(1)='RR'
 
-
-      par(1)=0.5d0
-C BP: Lower bound for RR during search
-      parmin(1) =  0.0d0
-C BP: Upper bound for RR during search
-      parmax(1) =  15.0d0
+ 
+      par(1)=0.5d0   
+      parmin(1) =  0.0d0   
+      parmax(1) =  3.0d0  
 
 
 
@@ -173,13 +170,10 @@ C     THAN .5.
 
 
 
-c Ascertainment part should follow as the second half of the predigrees:
-
-C      https://github.com/ictr/mendel_penetrance/issues/2#issuecomment-1306108800
-
-C      if(ped.gt.nped/2) loglik=-loglik
-
-CB    write(*,*) "NEWLIK CALLED with LOGLIK=", LOGLIK
+c Ascertainment part should follow as the second half of the predigrees: 
+      
+      if(ped.gt.nped/2) loglik=-loglik
+     
 
       END
 
@@ -197,7 +191,6 @@ C     IN A PEDIGREE.  THE CURRENT VERSION IS VALID ONLY FOR SIMPLE
 C     EITHER/OR TRAITS.
 C
 
-
       IMPLICIT NONE
 
       double precision absent
@@ -207,7 +200,6 @@ C
       integer          ngtype
       integer          nloci
       integer          npar
-CB:  nvar is the number of quantitative variables
       integer          nvar
       integer          ped, per
       logical          male
@@ -217,7 +209,7 @@ CB:  nvar is the number of quantitative variables
       INTEGER GENES(FIRST:LAST,2,NGTYPE)
       LOGICAL XLINK(NLOCI)
 
-      double precision  rrbr(0:79)
+      double precision  rrbr(0:79)  
       double precision  cumbrrisk
       double precision  popbr(0:79)
       double precision  ffbr(0:80)
@@ -225,7 +217,7 @@ CB:  nvar is the number of quantitative variables
       double precision  cumncbr
       double precision  p1, p2
       double precision  lambda(0:79,0:1)
-
+      
 
       integer i
       integer idis
@@ -233,7 +225,7 @@ CB:  nvar is the number of quantitative variables
       integer ageother, ageother2
       integer isex
       integer imut
-      integer is
+      integer is 
       integer iage
 
 
@@ -249,19 +241,14 @@ c---------------------------------------------------------------------
 c The risks will correspond to the risk of a first BC
 c Censoring occurs at the first of bc dx, oc dx, mastectomy or agelfu
 c Note that this is the minimum of the age at last follow-up
-c All censored at age 80.
+c All censored at age 80. 
 c Ignore oophorectomy [CAN BE CHANGED LATER]
 
 c Define the disease status, idis(=0 if unaffected, =1 if BC)
 
 c Define the censoring variable in the data. If icens=1 then the individual
 c is censored at birth.
-c---------------------------------------------------------------------
-      write(*,*) "AP per=", PER, "NGTYPE=", NGTYPE, "PAR=", PAR
-
-C PEN,"-",VAR,"A",GENES,"B",XLINK,ABSENT
-C     1,XYRATE,FIRST,LAST,MUTATE,NEXTRA,NGTYPE,NLOCI,NPAR,NVAR,PED
-C     2,PER,MALE,like
+c--------------------------------------------------------------------- 
 
        agebc  = var(1)
        agebc2 = var(2)
@@ -270,7 +257,7 @@ C     2,PER,MALE,like
        ageother2=var(5)
        agelfu = var(6)
        agedeath= var(7)
-
+       
 
 
 c By default everyone censored at 0, unless age information is available:
@@ -278,9 +265,8 @@ c By default everyone censored at 0, unless age information is available:
        age = 0
        idis=0
 
-CB: use agedeath or agelfu as ageother is ageother is MISSING (999)
 	if (ageother.eq. 999) then
-	 	if(agelfu.gt.0 .and. agedeath.gt.0) then
+	 	if(agelfu.gt.0 .and. agedeath.gt.0) then	 
 			ageother=min(agelfu,agedeath)
 		elseif(agelfu.gt.0 .and. agedeath.eq.0) then
 			ageother=agelfu
@@ -291,9 +277,9 @@ CB: use agedeath or agelfu as ageother is ageother is MISSING (999)
 		endif
 	endif
 
-CB: use agedeath or agelfu as agebc is agebc is MISSING (999)
+
 	if (agebc.eq. 999) then
-	 	if(agelfu.gt.0 .and. agedeath.gt.0) then
+	 	if(agelfu.gt.0 .and. agedeath.gt.0) then	 
 			agebc=min(agelfu,agedeath)
 		elseif(agelfu.gt.0 .and. agedeath.eq.0) then
 			agebc=agelfu
@@ -304,9 +290,8 @@ CB: use agedeath or agelfu as agebc is agebc is MISSING (999)
 		endif
 	endif
 
-CB: use agedeath or agelfu as ageoc is ageoc is MISSING (999)
 	if (ageoc.eq. 999) then
-	 	if(agelfu.gt.0 .and. agedeath.gt.0) then
+	 	if(agelfu.gt.0 .and. agedeath.gt.0) then	 
 			ageoc=min(agelfu,agedeath)
 		elseif(agelfu.gt.0 .and. agedeath.eq.0) then
 			ageoc=agelfu
@@ -317,7 +302,7 @@ CB: use agedeath or agelfu as ageoc is ageoc is MISSING (999)
 		endif
 	endif
 
-C Censor at the first cancer.
+C Censor at the first cancer. 
 
 	if(agebc.gt.0 .and. ageoc.gt.0 .and. ageother.gt.0) then
 	 age=min(agebc, ageoc, ageother)
@@ -341,30 +326,29 @@ C Censor at the first cancer.
 		age=min(agelfu, agedeath)
 	endif
 
-      if (age.eq.agebc .and. agebc.gt.0) idis=1
-C      write(*,*) 'per=', PER, 'age=', age, 'idis=', idis
+	if (age.eq.agebc .and. agebc.gt.0) idis=1
+
 c	write(*,*) agebc,ageoc,ageother,agelfu,agedeath,age,idis
-
+  
 
 c---------------------------------------------------------------------
-c Censor at age 80 is treated as NO disease
+c Censor at age 80
 c---------------------------------------------------------------------
-
+       
        if(age.ge.80) then
           idis=0
           age=80
-       endif
+       endif   
 
-
+ 
 c---------------------------------------------------------------------
 c For carriers we estimate the incidence rates using the
 c relative risks. In the fixed incidence version, no Rel Risk applies
 c to non-carriers.
 c---------------------------------------------------------------------
 
-CB: rrbr: is the relative risk for breat cancer??
        do i=0,79
-          if(i.lt.20) then
+          if(i.lt.20) then 
             rrbr(i) = 1.0d0
           elseif(i.lt.25) then
             rrbr(i) = exp(par(1))
@@ -389,12 +373,12 @@ CB: rrbr: is the relative risk for breat cancer??
           elseif(i.lt.80) then
            rrbr(i) = exp(par(1))
           endif
-       end do
-
-
+       end do    
+  
+  
 c---------------------------------------------------------------------
 c This code constraints overall incidence to the population rates to obtain
-c the female non carriers have incidence rates.
+c the female non carriers have incidence rates. 
 c---------------------------------------------------------------------
 
 c non carrier frequency
@@ -405,8 +389,8 @@ c carrier frequency:
 
 c initialise survival probabilities:
 
-c non-carriers:
-
+c non-carriers:  
+     
        ffncbr(0)=1.0d0
 
 c carriers:
@@ -425,7 +409,7 @@ c initialise sums:
      :             (p1*ffncbr(iage)+p2*ffbr(iage))/
      :              (p1*ffncbr(iage)+p2*rrbr(iage)*ffbr(iage))
 
-          lambda(iage,1)=lambda(iage,0)*rrbr(iage)
+          lambda(iage,1)=lambda(iage,0)*rrbr(iage)             
 
 
 c---------------------------------------------------------------------
@@ -434,12 +418,12 @@ c incidence rates
 c---------------------------------------------------------------------
 
         cumncbr = cumncbr + lambda(iage,0)
-
+       
         ffncbr(iage+1) = exp(-cumncbr)
 
 
 c---------------------------------------------------------------------
-c Compute the survivor function for carriers,
+c Compute the survivor function for carriers, 
 c---------------------------------------------------------------------
 
 
@@ -448,8 +432,8 @@ c---------------------------------------------------------------------
           ffbr(iage+1) = exp(-cumbrrisk)
 
 
-       end do
-
+       end do   
+       
 
 
 
@@ -473,12 +457,10 @@ c---------------------------------------------------------------------
 
       DO 10 I=1,NGTYPE
 
-
        if(genes(1,1,I).eq.1.and.genes(1,2,I).eq.1) then
         is=1
        else
         is=2
-C        WRITE(*,*) "PER", PER, "NGTYPE=", NGTYPE, "CARRIER I=", I
        endif
 
 
@@ -491,15 +473,15 @@ c---------------------------------------------------------------------
 
       if(isex.eq.1) then
          pen(i)=1.0d0
-      else
+      else   
 
 c---------------------------------------------------------------------
 c Non-Carriers develop the cancers according to population specific rates.
 c---------------------------------------------------------------------
 
-c=====================================================================
+c=====================================================================         
          if(is.eq.1) then
-c=====================================================================
+c=====================================================================         
 
 
 c---------------------------------------------------------------------
@@ -512,17 +494,17 @@ c For disease free females:
 c---------------------------------------------------------------------
 
             if(idis.eq.0) then
-              pen(i) = ffncbr(age)
-
+              pen(i) = ffncbr(age) 
+          
 
 c---------------------------------------------------------------------
 c If she develops  breast cancer
 c---------------------------------------------------------------------
             elseif(idis.eq.1) then
               pen(i) = ffncbr(age)*lambda(age,0)
+            
 
-
-            endif
+            endif    
 
 
 c---------------------------------------------------------------------
@@ -530,18 +512,18 @@ c Carriers develop the cancers according to the fixed background
 c incidence times the relative risks.
 c---------------------------------------------------------------------
 
-c=====================================================================
+c=====================================================================         
          else
-c=====================================================================
-
+c===================================================================== 
+         
 
 c---------------------------------------------------------------------
 c For disease free carriers:
 c---------------------------------------------------------------------
 
             if(idis.eq.0) then
-               pen(i) = ffbr(age)
-
+               pen(i) = ffbr(age) 
+               
 c---------------------------------------------------------------------
 c If carriers  develops  breast cancer
 c---------------------------------------------------------------------
@@ -550,15 +532,15 @@ c---------------------------------------------------------------------
 
             endif
 
-c=====================================================================
+c=====================================================================         
          endif
-c=====================================================================
+c===================================================================== 
+ 
+        
 
-
-
-      endif
-
-C	write(*,*) ped, per, age, pen(i)
+      endif  
+	
+c	write(*,*) ped, per, age, pen(i)
 
 10    continue
       return
@@ -589,7 +571,7 @@ C
 
 
       DO 10 I=1,NGTYPE
-      P=1.0D0
+      P=1.0D0   
       DO 20 LOCUS=FIRST,LAST
       IG1=GENES(LOCUS,1,I)
       IF (XLINK(LOCUS).AND.MALE) THEN
@@ -615,7 +597,7 @@ C     PARENT-OFFSPRING PAIR IN A PEDIGREE.  THE SUFFIX I INDICATES
 C     THE PARENT AND THE SUFFIX J THE CHILD.  SEVERAL MULTIPLE
 C     LOCUS GENOTYPES OF THE PARENT ARE PASSED VIA THE ARRAY GENES.
 C     THE ARRAY GAMETE REPRESENTS ONE OF THE TWO GAMETES MAKING UP
-C     A MULTIPLE LOCUS GENOTYPE OF THE CHILD.
+C     A MULTIPLE LOCUS GENOTYPE OF THE CHILD.  
 
 
       IMPLICIT DOUBLE PRECISION(A-H,O-Z)
@@ -628,7 +610,7 @@ C     A MULTIPLE LOCUS GENOTYPE OF THE CHILD.
       DO 10 I=1,NGTYPE
 
          TRANS(I)=1.0
-
+         
          T=0.0D0
          IF (GENES(1,1,I).EQ.GAMETE(1)) T=T+0.5D0
          IF (GENES(1,2,I).EQ.GAMETE(1)) T=T+0.5D0
@@ -639,3 +621,4 @@ C     A MULTIPLE LOCUS GENOTYPE OF THE CHILD.
 10    CONTINUE
 
       END
+
