@@ -1,0 +1,7 @@
+step*/
+!step*/*.f
+*_raw/
+!*raw/*.dat
+mendel/
+!mendel/README.md
+!mendel/*.f
