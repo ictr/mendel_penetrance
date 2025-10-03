@@ -11,7 +11,7 @@ STEP1_BINARY = step1/step1_single
 
 step1-compile: $(STEP1_BINARY)
 
-$(STEP1_BINARY):
+$(STEP1_BINARY): step1/lfs_single.f
 	cd step1 && gfortran -O3 mendela-batch.f lfs_single.f -o step1_single
 
 step1-example: $(STEP1_BINARY)
