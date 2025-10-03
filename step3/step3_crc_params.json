@@ -1,0 +1,7 @@
+{
+  "cancer_type": "colorectal",
+  "rr_model": "piecewise",
+  "npar": 3,
+  "maxage": 90,
+  "age_cutoffs": [0, 30, 60, 90]
+}
