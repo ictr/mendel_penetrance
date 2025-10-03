@@ -1,5 +1,5 @@
 C
-C  
+C
 C
 C  Program for computing breast cancer penetrance using family data.
 C  TP53 data for  Clare Turnbull.
@@ -68,7 +68,7 @@ C
       double precision   popbr(0:89)
 
       common /popincid/popbr
-      
+
       write(UNIT3,*) '=== INITAL CALLED ==='
       write(UNIT3,*) 'NPAR=', NPAR
 
@@ -106,7 +106,7 @@ C----------------------------------------------------------------
 C  Read in the population incidence rates for England and Wales 1993-97
 c  per 100000 population.
 C----------------------------------------------------------------
-      
+
            data  popbr/12.991,
      :12.991,
      :12.991,
@@ -205,7 +205,7 @@ C----------------------------------------------------------------
      :1085.937,
      :1085.937,
      :1085.937/
-     
+
       write(UNIT3,*) 'Population incidence loaded for ages 0-89'
       write(UNIT3,*) 'Sample rates: popbr(0)=', popbr(0),
      :            ' popbr(30)=', popbr(30), ' popbr(60)=', popbr(60)
@@ -359,7 +359,7 @@ c---------------------------------------------------------------------
        ageother2=var(5)
        agelfu = var(6)
        agedeath= var(7)
-       
+
        if(ped.eq.1 .and. per.le.3) then
          write(*,*) '=== Data Import Check ==='
          write(*,*) 'Ped=', ped, ' Per=', per, ' Male=', male
@@ -461,7 +461,7 @@ c relative risks. In the fixed incidence version, no Rel Risk applies
 c to non-carriers.
 c---------------------------------------------------------------------
 
-      
+
        if(ped.eq.1 .and. per.le.2) then
          write(*,*) '=== Ped', ped, ' Per', per, ' params ==='
          write(*,*) '  par(1)=', par(1), ' exp(par(1))=', exp(par(1))
@@ -481,7 +481,7 @@ c---------------------------------------------------------------------
          write(*,*) '  Sample RR: rrbr(20)=', rrbr(20),
      :            ' rrbr(40)=', rrbr(40), ' rrbr(70)=', rrbr(70)
        endif
-      
+
 
 
 c---------------------------------------------------------------------
@@ -520,7 +520,7 @@ c       write(*,*) '  p1 (non-carrier freq)=', p1, ' p2 (carrier freq)=', p2
      :              (p1*ffncbr(iage)+p2*rrbr(iage)*ffbr(iage))
 
           lambda(iage,1)=lambda(iage,0)*rrbr(iage)
-          
+
 c          if(iage.eq.0 .or. iage.eq.30 .or. iage.eq.60) then
 c            write(*,*) '  Age ', iage, ': lambda(nc)=', lambda(iage,0),
 c     :                ' lambda(c)=', lambda(iage,1),
@@ -572,7 +572,7 @@ c by is=2 and non carriers by  is=1
 c---------------------------------------------------------------------
 
 c     Debug output commented out for now
-c      write(*,*) '=== APEN: ped=', ped, ' per=', per, 
+c      write(*,*) '=== APEN: ped=', ped, ' per=', per,
 c     :           ' male=', male, ' ngtype=', ngtype
 c      write(*,*) '  Age info: agebc=', agebc, ' agelfu=', agelfu,
 c     :           ' age=', age, ' idis=', idis
@@ -585,7 +585,7 @@ c     :           ' age=', age, ' idis=', idis
         is=2
        endif
        if(ped.eq.1 .and. per.le.3 .and. I.eq.1) then
-         write(*,*) '  Genotype ', I, ': genes=', genes(1,1,I), 
+         write(*,*) '  Genotype ', I, ': genes=', genes(1,1,I),
      :            genes(1,2,I), ' carrier status=', is
        endif
 
@@ -599,7 +599,7 @@ c---------------------------------------------------------------------
 
 
       if(isex.eq.1) then
-           pen(i)=1.0d0
+           pen(i)=0.0d0
       else
 
 

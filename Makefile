@@ -48,6 +48,10 @@ STEP3_SEX_SPECIFIC_TEMPLATE = step3/single_sex_specific_template.f
 STEP3_CRC_PARAMS = step3/step3_crc_params.json
 STEP3_BREAST_PARAMS = step3/step3_breast_params.json
 
+STEP4_TEMPLATE = step3/single_template.f
+STEP4_BREAST_PARAMS = step4/step4_breast_params.json
+STEP4_BREAST_BINARY = step4/step4_breast
+
 ${STEP3_CRC_SRC}: ${STEP3_TEMPLATE} ${STEP3_CRC_PARAMS}
 	@echo "Generating step3/lfs_crc.f from template"
 	cat ${STEP3_CRC_PARAMS} | jinja2 ${STEP3_TEMPLATE} --format=json  > ${STEP3_CRC_SRC}
@@ -68,7 +72,19 @@ step3-crc: $(STEP3_CRC_BINARY)
 	cd colorectal_raw && ../$(STEP3_CRC_BINARY) && mv single_out.dat crc_step3.dat && cat crc_step3.dat | grep -v IERROR | grep -vx ''
 
 step3-breast: $(STEP3_BREAST_BINARY)
-	cd breast_raw && ../$(STEP3_BREAST_BINARY) && mv single_out.dat breast_step3.dat && cat breast_step3.dat | grep -v IERROR | grep -vx ''
+	cd breast_raw && ../$(STEP3_BREAST_BINARY) > step3_breast_debug.txt
+	cd breast_raw && mv single_out.dat breast_step3.dat && cat breast_step3.dat | grep -v IERROR | grep -vx ''
+
+${STEP4_BREAST_SRC}: ${STEP4_TEMPLATE} ${STEP4_BREAST_PARAMS}
+	@echo "Generating step4/lfs_breast.f from template"
+	cat ${STEP4_BREAST_PARAMS} | jinja2 ${STEP4_TEMPLATE} --format=json  > ${STEP4_BREAST_SRC}
+
+$(STEP4_BREAST_BINARY): ${STEP4_BREAST_SRC}
+	cd step4 && gfortran -O3 mendela-batch.f lfs_breast.f -o step4_breast
+
+step4-breast: $(STEP4_BREAST_BINARY)
+	cd breast_raw && ../$(STEP4_BREAST_BINARY) > step4_breast_debug.txt
+	cd breast_raw && mv single_out.dat breast_step3.dat && cat breast_step3.dat | grep -v IERROR | grep -vx ''
 
 
 clean:

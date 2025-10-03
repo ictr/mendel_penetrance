@@ -1,5 +1,5 @@
 C
-C  
+C  {{ label }}
 C
 C  Program for computing breast cancer penetrance using family data.
 C  TP53 data for  Clare Turnbull.
@@ -33,8 +33,8 @@ C
       DATA EXTRA/100*0.0D0/
       DATA LNAME/'MAJOR',9*' '/
       DATA MUTLOC,XXRATE,XYRATE,COND/' ',0.0001199d0,0.0001199d0,2/
-      DATA BASE,STAND,TRAVEL,NPOINT/'E',.FALSE.,'SEARCH',1/
-      DATA NPAR,NCNSTR,ASYCV,MXITER/3,0,.TRUE.,599/
+      DATA BASE,STAND,TRAVEL,NPOINT/'E',.FALSE.,'{{ travel|default("SEARCH") }}',1/
+      DATA NPAR,NCNSTR,ASYCV,MXITER/{{ npar }},0,.TRUE.,{{ mxiter|default(599) }}/
 C
 C     THE ARRAYS AND VARIABLES BEGIN A LONG DESCENT INTO THE
 C     PROGRAM.  SAY GOODBYE TO THEM AND WISH THEM LUCK.
@@ -65,12 +65,9 @@ C
       CHARACTER*8 PNAME(NPAR),TRAVEL
       LOGICAL XLINK(NLOCI)
 
-      double precision   popbr(0:89)
+      double precision   popbr(0:{{ maxage - 1 }})
 
       common /popincid/popbr
-      
-      write(UNIT3,*) '=== INITAL CALLED ==='
-      write(UNIT3,*) 'NPAR=', NPAR
 
 
 
@@ -82,23 +79,17 @@ C-----------------------------------------------------------------------
 
 
       pname(1)='RR'
-      pname(2)='PAR 2'
-      pname(3)='PAR 3'
 
       CALL RANDOM_SEED()
 
-      write(UNIT3,*) '=== INITAL: Parameter initialization ==='
-      write(UNIT3,*) 'NPAR=', NPAR
       DO I=1,NPAR
-        par(I) = 0.5d0
-        parmin(I) =  0.0d0
-        parmax(I) =  5.0d0
+        par(I) = {{ '%0.1f'| format(parinit|default(0.5)) }}d0
+        parmin(I) =  {{ '%0.1f'| format(parmin|default(0)) }}d0
+        parmax(I) =  {{ '%0.1f'| format(parmax|default(5)) }}d0
         IF ( par(I) .EQ. 0.0d0 ) THEN
             CALL RANDOM_NUMBER(HARVEST)
             par(I) = parmin(I) + HARVEST * (parmax(I) - parmin(I))
         ENDIF
-        write(UNIT3,*) 'par(',I,')=', par(I), ' range=[', parmin(I),
-     :              ',', parmax(I), ']'
       END DO
 
 
@@ -106,7 +97,83 @@ C----------------------------------------------------------------
 C  Read in the population incidence rates for England and Wales 1993-97
 c  per 100000 population.
 C----------------------------------------------------------------
-      
+      {% if cancer_type|lower == "colorectal" %}
+      data  popbr/0.0010, 0.0050, 0.0090, 0.0220, 0.0430,
+     :0.0650, 0.0860, 0.1160, 0.1990, 0.2910,
+     :0.3830, 0.4750, 0.5730, 0.7090, 0.8510,
+     :0.9930, 1.1350, 1.2730, 1.3820, 1.4870,
+     :1.5920, 1.6960, 1.8240, 2.0860, 2.3720,
+     :2.6570, 2.9430, 3.2620, 3.7800, 4.3320,
+     :4.8840, 5.4360, 6.0360, 6.9270, 7.8660,
+     :8.8060, 9.7450, 10.7850, 12.4340, 14.1830,
+     :15.9330, 17.6820, 19.5540, 22.1620, 24.8920,
+     :27.6220, 30.3510, 33.5010, 39.1800, 45.2780,
+     :51.3740, 57.4690, 62.9320, 64.6190, 65.6750,
+     :66.7300, 67.7830, 69.2050, 72.8420, 76.8460,
+     :80.8460, 84.8440, 89.0500, 94.5240, 100.2040,
+     :105.8790, 111.5490, 117.1350, 122.2510, 127.2830,
+     :132.3070, 137.3240, 142.7000, 150.2750, 158.2030,
+     :166.1160, 174.0110, 181.8510, 189.4490, 196.9850,
+     :204.4950, 211.9770, 219.2250, 225.2180, 230.9740,
+     :236.6940, 242.3780, 246.8160, 243.9830, 239.9320 /
+      {% elif cancer_type|lower == "pancreatic" %}
+      data  popbr/0.0230, 0.0230, 0.0230, 0.0220, 0.0200,
+     :0.0180, 0.0150, 0.0160, 0.0310, 0.0490,
+     :0.0660, 0.0840, 0.1010, 0.1110, 0.1200,
+     :0.1280, 0.1370, 0.1460, 0.1530, 0.1610,
+     :0.1680, 0.1750, 0.1850, 0.2150, 0.2480,
+     :0.2810, 0.3140, 0.3540, 0.4380, 0.5280,
+     :0.6190, 0.7090, 0.8040, 0.9280, 1.0560,
+     :1.1840, 1.3120, 1.4590, 1.7160, 1.9910,
+     :2.2670, 2.5420, 2.8600, 3.4290, 4.0400,
+     :4.6510, 5.2620, 5.9420, 7.0360, 8.1990,
+     :9.3620, 10.5250, 11.7580, 13.4210, 15.1550,
+     :16.8890, 18.6220, 20.4370, 22.7530, 25.1510,
+     :27.5480, 29.9430, 32.4230, 35.4200, 38.5020,
+     :41.5820, 44.6580, 47.7170, 50.6910, 53.6470,
+     :56.5990, 59.5470, 62.5790, 66.1440, 69.7930,
+     :73.4340, 77.0690, 80.5480, 83.1370, 85.5720,
+     :88.0000, 90.4200, 92.7670, 94.7190, 96.5990,
+     :98.4720, 100.3380, 101.8220, 101.0630, 99.9310 /
+      {% elif cancer_type|lower == "brain" %}
+      data  popbr/3.7450, 3.9430, 4.1700, 4.1870, 3.9950,
+     :3.8020, 3.6100, 3.4240, 3.2740, 3.1300,
+     :2.9860, 2.8420, 2.7030, 2.5980, 2.4990,
+     :2.4000, 2.3010, 2.2110, 2.1790, 2.1570,
+     :2.1340, 2.1120, 2.1100, 2.2330, 2.3770,
+     :2.5200, 2.6640, 2.8020, 2.9140, 3.0200,
+     :3.1270, 3.2330, 3.3330, 3.3910, 3.4430,
+     :3.4940, 3.5460, 3.6050, 3.7070, 3.8170,
+     :3.9260, 4.0360, 4.1550, 4.3280, 4.5120,
+     :4.6950, 4.8780, 5.0940, 5.5140, 5.9670,
+     :6.4190, 6.8720, 7.3290, 7.8080, 8.2920,
+     :8.7750, 9.2580, 9.7450, 10.2540, 10.7670,
+     :11.2790, 11.7920, 12.3220, 12.9590, 13.6130,
+     :14.2670, 14.9210, 15.5690, 16.1840, 16.7940,
+     :17.4030, 18.0120, 18.5990, 19.0550, 19.4890,
+     :19.9220, 20.3550, 20.7620, 21.0140, 21.2390,
+     :21.4640, 21.6890, 21.8390, 21.5450, 21.1770,
+     :20.8100, 20.4420, 19.9830, 18.9740, 17.8740 /
+      {% elif cancer_type|lower == "breast1" %}
+      data  popbr/0.0220, 0.0140, 0.0050, 0.0000, 0.0010,
+     :0.0020, 0.0030, 0.0040, 0.0040, 0.0030,
+     :0.0020, 0.0010, 0.0020, 0.0180, 0.0360,
+     :0.0540, 0.0720, 0.1070, 0.2420, 0.3950,
+     :0.5470, 0.6990, 0.9420, 1.7310, 2.6120,
+     :3.4920, 4.3720, 5.4060, 7.3600, 9.4670,
+     :11.5750, 13.6820, 16.0160, 19.7130, 23.6360,
+     :27.5580, 31.4810, 36.1100, 44.9770, 54.5500,
+     :64.1220, 73.6920, 83.0390, 91.0500, 98.8380,
+     :106.6240, 114.4080, 121.7820, 126.7060, 131.2210,
+     :135.7340, 140.2440, 144.5710, 147.8110, 150.8680,
+     :153.9230, 156.9750, 160.7430, 168.8230, 177.6160,
+     :186.4040, 195.1860, 204.0540, 213.4700, 222.9710,
+     :232.4630, 241.9470, 250.8900, 256.6350, 261.8400,
+     :267.0370, 272.2260, 276.4580, 274.9920, 272.5720,
+     :270.1490, 267.7210, 264.9980, 260.5260, 255.7610,
+     :250.9930, 246.2230, 241.4770, 236.8880, 232.3200,
+     :227.7470, 223.1710, 218.1060, 210.1350, 201.6820 /
+     {% elif cancer_type|lower == "breast" %}
            data  popbr/12.991,
      :12.991,
      :12.991,
@@ -205,10 +272,108 @@ C----------------------------------------------------------------
      :1085.937,
      :1085.937,
      :1085.937/
-     
-      write(UNIT3,*) 'Population incidence loaded for ages 0-89'
-      write(UNIT3,*) 'Sample rates: popbr(0)=', popbr(0),
-     :            ' popbr(30)=', popbr(30), ' popbr(60)=', popbr(60)
+     {% elif cancer_type|lower == "leukemia" %}
+      data  popbr/4.5370, 6.1280, 7.9460, 8.3480, 7.3330,
+     :6.3180, 5.3030, 4.3910, 4.1020, 3.9160,
+     :3.7300, 3.5440, 3.3780, 3.3340, 3.3100,
+     :3.2860, 3.2620, 3.2320, 3.1650, 3.0920,
+     :3.0190, 2.9460, 2.8860, 2.9050, 2.9370,
+     :2.9690, 3.0010, 3.0420, 3.1340, 3.2360,
+     :3.3370, 3.4380, 3.5460, 3.6920, 3.8450,
+     :3.9970, 4.1490, 4.3230, 4.6220, 4.9430,
+     :5.2640, 5.5840, 5.9250, 6.3860, 6.8660,
+     :7.3470, 7.8280, 8.3480, 9.1060, 9.9040,
+     :10.7020, 11.4990, 12.3370, 13.4160, 14.5360,
+     :15.6550, 16.7740, 17.9650, 19.5830, 21.2720,
+     :22.9610, 24.6500, 26.4400, 28.8440, 31.3500,
+     :33.8540, 36.3580, 38.8850, 41.5580, 44.2550,
+     :46.9490, 49.6420, 52.3860, 55.4460, 58.5560,
+     :61.6630, 64.7660, 67.7850, 70.3220, 72.7750,
+     :75.2230, 77.6660, 80.0070, 81.7670, 83.4270,
+     :85.0820, 86.7320, 88.0530, 87.4330, 86.4890 /
+     {% elif cancer_type|lower == "lfs" %}
+      data  popbr/9.1,
+     :13.4,
+     :13.4,
+     :13.4,
+     :13.4,
+     :8.3,
+     :8.3,
+     :8.3,
+     :8.3,
+     :8.3,
+     :7.700000000000001,
+     :7.700000000000001,
+     :7.700000000000001,
+     :7.700000000000001,
+     :7.700000000000001,
+     :7.9,
+     :7.9,
+     :7.9,
+     :7.9,
+     :7.9,
+     :7.800000000000001,
+     :7.800000000000001,
+     :7.800000000000001,
+     :7.800000000000001,
+     :7.800000000000001,
+     :12.899999999999999,
+     :12.899999999999999,
+     :12.899999999999999,
+     :12.899999999999999,
+     :12.899999999999999,
+     :24.4,
+     :24.4,
+     :24.4,
+     :24.4,
+     :24.4,
+     :47.599999999999994,
+     :47.599999999999994,
+     :47.599999999999994,
+     :47.599999999999994,
+     :47.599999999999994,
+     :88.1,
+     :88.1,
+     :88.1,
+     :88.1,
+     :88.1,
+     :144.9,
+     :144.9,
+     :144.9,
+     :144.9,
+     :144.9,
+     :202.40000000000003,
+     :202.40000000000003,
+     :202.40000000000003,
+     :202.40000000000003,
+     :202.40000000000003,
+     :282.2,
+     :282.2,
+     :282.2,
+     :282.2,
+     :282.2,
+     :397.79999999999995,
+     :397.79999999999995,
+     :397.79999999999995,
+     :397.79999999999995,
+     :397.79999999999995,
+     :534.5,
+     :534.5,
+     :534.5,
+     :534.5,
+     :534.5,
+     :658.5,
+     :658.5,
+     :658.5,
+     :658.5,
+     :658.5,
+     :743.5,
+     :743.5,
+     :743.5,
+     :743.5,
+     :743.5 /
+     {% endif %}
+
 
 
       END
@@ -233,7 +398,6 @@ C
       START=LOGLIK
       write(*,10) (pname(i),i=1,npar)
       WRITE(UNIT3,10) (PNAME(I),I=1,NPAR)
-      WRITE(UNIT3,*) 'Starting loglik=', LOGLIK
  10   FORMAT(/,' ITER  NSTEP  LOGLIKELIHOOD',(T28,4(4X,A8),:))
       END IF
       IF (LOGLIK.GE.BEST) THEN
@@ -311,14 +475,14 @@ C
       INTEGER GENES(FIRST:LAST,2,NGTYPE)
       LOGICAL XLINK(NLOCI)
 
-      double precision  rrbr(0:89)
+      double precision  rrbr(0:{{ maxage - 1}})
       double precision  cumbrrisk
-      double precision  popbr(0:89)
-      double precision  ffbr(0:90)
-      double precision  ffncbr(0:90)
+      double precision  popbr(0:{{ maxage - 1}})
+      double precision  ffbr(0:{{ maxage }})
+      double precision  ffncbr(0:{{ maxage }})
       double precision  cumncbr
       double precision  p1, p2
-      double precision  lambda(0:89,0:1)
+      double precision  lambda(0:{{ maxage - 1}},0:1)
 
 
       integer i
@@ -359,18 +523,6 @@ c---------------------------------------------------------------------
        ageother2=var(5)
        agelfu = var(6)
        agedeath= var(7)
-       
-       if(ped.eq.1 .and. per.le.3) then
-         write(*,*) '=== Data Import Check ==='
-         write(*,*) 'Ped=', ped, ' Per=', per, ' Male=', male
-         write(*,*) 'VAR(1) agebc=', agebc
-         write(*,*) 'VAR(2) agebc2=', agebc2
-         write(*,*) 'VAR(3) ageoc=', ageoc
-         write(*,*) 'VAR(4) ageother=', ageother
-         write(*,*) 'VAR(5) ageother2=', ageother2
-         write(*,*) 'VAR(6) agelfu=', agelfu
-         write(*,*) 'VAR(7) agedeath=', agedeath
-       endif
 
 
 
@@ -446,12 +598,12 @@ c	write(*,*) agebc,ageoc,ageother,agelfu,agedeath,age,idis
 
 
 c---------------------------------------------------------------------
-c Censor at age 90
+c Censor at age {{ maxage }}
 c---------------------------------------------------------------------
 
-       if(age.ge.90) then
+       if(age.ge.{{ maxage }}) then
           idis=0
-          age=90
+          age={{ maxage }}
        endif
 
 
@@ -461,27 +613,32 @@ c relative risks. In the fixed incidence version, no Rel Risk applies
 c to non-carriers.
 c---------------------------------------------------------------------
 
-      
-       if(ped.eq.1 .and. per.le.2) then
-         write(*,*) '=== Ped', ped, ' Per', per, ' params ==='
-         write(*,*) '  par(1)=', par(1), ' exp(par(1))=', exp(par(1))
-         write(*,*) '  par(2)=', par(2), ' exp(par(2))=', exp(par(2))
-         write(*,*) '  par(3)=', par(3), ' exp(par(3))=', exp(par(3))
-       endif
-       do i=0,89
-          if(i.lt.30) then
-            rrbr(i) = exp(par(1))
-          elseif(i.lt.60) then
-            rrbr(i) = exp(par(2))
-          else
-            rrbr(i) = exp(par(3))
+      {% if rr_model == "linear" %}
+
+       do i=0,{{ maxage - 1}}
+          if(i.lt.{{ age_cutoffs[1] }}) then
+            rrbr(i) = exp( (par(2) - par(1))/{{ age_cutoffs[1] }} * (i - 0) + par(1) )
+          {% for N in range(3, npar) -%}
+          elseif(i.lt.{{ age_cutoffs[N-1] }}) then
+            rrbr(i) = exp( (par({{ N }}) - par({{ N-1 }}))/{{ age_cutoffs[N-1] - age_cutoffs[N-2] }} * (i - {{ age_cutoffs[N-2] }}) + par({{ N-1}}) )
+          {% endfor -%}
+          elseif(i.lt.{{ maxage }}) then
+            rrbr(i) = exp( (par({{ npar }}) - par({{ npar - 1 }}))/{{ maxage - age_cutoffs[npar - 2] }} * (i - {{ age_cutoffs[npar - 2] }}) + par({{ npar - 1 }}) )
           endif
        end do
-       if(ped.eq.1 .and. per.le.2) then
-         write(*,*) '  Sample RR: rrbr(20)=', rrbr(20),
-     :            ' rrbr(40)=', rrbr(40), ' rrbr(70)=', rrbr(70)
-       endif
-      
+      {% elif rr_model == "piecewise" %}
+       do i=0,{{ maxage - 1}}
+          if(i.lt.{{ age_cutoffs[1] }}) then
+            rrbr(i) = exp(par(1))
+          {% for N in range(2, npar) -%}
+          elseif(i.lt.{{ age_cutoffs[N] }}) then
+            rrbr(i) = exp(par({{ N }}))
+          {% endfor -%}
+          else
+            rrbr(i) = exp(par({{ npar }}))
+          endif
+       end do
+      {% endif %}
 
 
 c---------------------------------------------------------------------
@@ -511,21 +668,13 @@ c initialise sums:
        cumbrrisk=0.0d0
 
 
-c       write(*,*) '=== Computing lambda values ==='
-c       write(*,*) '  p1 (non-carrier freq)=', p1, ' p2 (carrier freq)=', p2
-       do iage=0,89
+       do iage=0,{{ maxage - 1 }}
 
           lambda(iage,0)=(popbr(iage)/100000.0d0)*
      :             (p1*ffncbr(iage)+p2*ffbr(iage))/
      :              (p1*ffncbr(iage)+p2*rrbr(iage)*ffbr(iage))
 
           lambda(iage,1)=lambda(iage,0)*rrbr(iage)
-          
-c          if(iage.eq.0 .or. iage.eq.30 .or. iage.eq.60) then
-c            write(*,*) '  Age ', iage, ': lambda(nc)=', lambda(iage,0),
-c     :                ' lambda(c)=', lambda(iage,1),
-c     :                ' popbr=', popbr(iage), ' rrbr=', rrbr(iage)
-c          endif
 
 
 
@@ -571,22 +720,12 @@ c Assume a  dominant model. So carriers denoted
 c by is=2 and non carriers by  is=1
 c---------------------------------------------------------------------
 
-c     Debug output commented out for now
-c      write(*,*) '=== APEN: ped=', ped, ' per=', per, 
-c     :           ' male=', male, ' ngtype=', ngtype
-c      write(*,*) '  Age info: agebc=', agebc, ' agelfu=', agelfu,
-c     :           ' age=', age, ' idis=', idis
-
       DO 10 I=1,NGTYPE
 
        if(genes(1,1,I).eq.1.and.genes(1,2,I).eq.1) then
         is=1
        else
         is=2
-       endif
-       if(ped.eq.1 .and. per.le.3 .and. I.eq.1) then
-         write(*,*) '  Genotype ', I, ': genes=', genes(1,1,I), 
-     :            genes(1,2,I), ' carrier status=', is
        endif
 
 
@@ -597,11 +736,11 @@ c Assume that males do not develop either cancer and specify the penetrance
 c for each male as 1*fact
 c---------------------------------------------------------------------
 
-
+{% if cancer_type == "breast" %}
       if(isex.eq.1) then
            pen(i)=1.0d0
       else
-
+{% endif %}
 
 c---------------------------------------------------------------------
 c Non-Carriers develop the cancers according to population specific rates.
@@ -666,14 +805,11 @@ c=====================================================================
 
 
 
-
+{% if cancer_type == "breast" %}
       endif
+{% endif %}
 
-
-      if(ped.eq.1 .and. per.le.2) then
-        write(*,*) '  Final pen(', i, ')=', pen(i),
-     :           ' for age=', age, ' idis=', idis, ' is=', is
-      endif
+c	write(*,*) ped, per, age, pen(i)
 
 10    continue
       return
@@ -700,9 +836,6 @@ C
 
       allfrq(1,2)=0.0004d0
       allfrq(1,1)=1.0d0-allfrq(1,2)
-c      write(*,*) '=== APRIOR: Allele frequencies set ==='
-c      write(*,*) '  allfrq(1,1)=', allfrq(1,1),
-c     :           ' allfrq(1,2)=', allfrq(1,2)
 
 
 

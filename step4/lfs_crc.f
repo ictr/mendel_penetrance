@@ -68,9 +68,6 @@ C
       double precision   popbr(0:89)
 
       common /popincid/popbr
-      
-      write(UNIT3,*) '=== INITAL CALLED ==='
-      write(UNIT3,*) 'NPAR=', NPAR
 
 
 
@@ -82,13 +79,9 @@ C-----------------------------------------------------------------------
 
 
       pname(1)='RR'
-      pname(2)='PAR 2'
-      pname(3)='PAR 3'
 
       CALL RANDOM_SEED()
 
-      write(UNIT3,*) '=== INITAL: Parameter initialization ==='
-      write(UNIT3,*) 'NPAR=', NPAR
       DO I=1,NPAR
         par(I) = 0.5d0
         parmin(I) =  0.0d0
@@ -97,8 +90,6 @@ C-----------------------------------------------------------------------
             CALL RANDOM_NUMBER(HARVEST)
             par(I) = parmin(I) + HARVEST * (parmax(I) - parmin(I))
         ENDIF
-        write(UNIT3,*) 'par(',I,')=', par(I), ' range=[', parmin(I),
-     :              ',', parmax(I), ']'
       END DO
 
 
@@ -107,108 +98,26 @@ C  Read in the population incidence rates for England and Wales 1993-97
 c  per 100000 population.
 C----------------------------------------------------------------
       
-           data  popbr/12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
+      data  popbr/0.0010, 0.0050, 0.0090, 0.0220, 0.0430,
+     :0.0650, 0.0860, 0.1160, 0.1990, 0.2910,
+     :0.3830, 0.4750, 0.5730, 0.7090, 0.8510,
+     :0.9930, 1.1350, 1.2730, 1.3820, 1.4870,
+     :1.5920, 1.6960, 1.8240, 2.0860, 2.3720,
+     :2.6570, 2.9430, 3.2620, 3.7800, 4.3320,
+     :4.8840, 5.4360, 6.0360, 6.9270, 7.8660,
+     :8.8060, 9.7450, 10.7850, 12.4340, 14.1830,
+     :15.9330, 17.6820, 19.5540, 22.1620, 24.8920,
+     :27.6220, 30.3510, 33.5010, 39.1800, 45.2780,
+     :51.3740, 57.4690, 62.9320, 64.6190, 65.6750,
+     :66.7300, 67.7830, 69.2050, 72.8420, 76.8460,
+     :80.8460, 84.8440, 89.0500, 94.5240, 100.2040,
+     :105.8790, 111.5490, 117.1350, 122.2510, 127.2830,
+     :132.3070, 137.3240, 142.7000, 150.2750, 158.2030,
+     :166.1160, 174.0110, 181.8510, 189.4490, 196.9850,
+     :204.4950, 211.9770, 219.2250, 225.2180, 230.9740,
+     :236.6940, 242.3780, 246.8160, 243.9830, 239.9320 /
+      
 
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-     :12.991,
-
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-     :25.464,
-
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-     :63.52,
-
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-     :163.989,
-
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-     :347.643,
-
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-     :701.344,
-
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937,
-     :1085.937/
-     
-      write(UNIT3,*) 'Population incidence loaded for ages 0-89'
-      write(UNIT3,*) 'Sample rates: popbr(0)=', popbr(0),
-     :            ' popbr(30)=', popbr(30), ' popbr(60)=', popbr(60)
 
 
       END
@@ -233,7 +142,6 @@ C
       START=LOGLIK
       write(*,10) (pname(i),i=1,npar)
       WRITE(UNIT3,10) (PNAME(I),I=1,NPAR)
-      WRITE(UNIT3,*) 'Starting loglik=', LOGLIK
  10   FORMAT(/,' ITER  NSTEP  LOGLIKELIHOOD',(T28,4(4X,A8),:))
       END IF
       IF (LOGLIK.GE.BEST) THEN
@@ -359,18 +267,6 @@ c---------------------------------------------------------------------
        ageother2=var(5)
        agelfu = var(6)
        agedeath= var(7)
-       
-       if(ped.eq.1 .and. per.le.3) then
-         write(*,*) '=== Data Import Check ==='
-         write(*,*) 'Ped=', ped, ' Per=', per, ' Male=', male
-         write(*,*) 'VAR(1) agebc=', agebc
-         write(*,*) 'VAR(2) agebc2=', agebc2
-         write(*,*) 'VAR(3) ageoc=', ageoc
-         write(*,*) 'VAR(4) ageother=', ageother
-         write(*,*) 'VAR(5) ageother2=', ageother2
-         write(*,*) 'VAR(6) agelfu=', agelfu
-         write(*,*) 'VAR(7) agedeath=', agedeath
-       endif
 
 
 
@@ -462,12 +358,6 @@ c to non-carriers.
 c---------------------------------------------------------------------
 
       
-       if(ped.eq.1 .and. per.le.2) then
-         write(*,*) '=== Ped', ped, ' Per', per, ' params ==='
-         write(*,*) '  par(1)=', par(1), ' exp(par(1))=', exp(par(1))
-         write(*,*) '  par(2)=', par(2), ' exp(par(2))=', exp(par(2))
-         write(*,*) '  par(3)=', par(3), ' exp(par(3))=', exp(par(3))
-       endif
        do i=0,89
           if(i.lt.30) then
             rrbr(i) = exp(par(1))
@@ -477,10 +367,6 @@ c---------------------------------------------------------------------
             rrbr(i) = exp(par(3))
           endif
        end do
-       if(ped.eq.1 .and. per.le.2) then
-         write(*,*) '  Sample RR: rrbr(20)=', rrbr(20),
-     :            ' rrbr(40)=', rrbr(40), ' rrbr(70)=', rrbr(70)
-       endif
       
 
 
@@ -511,8 +397,6 @@ c initialise sums:
        cumbrrisk=0.0d0
 
 
-c       write(*,*) '=== Computing lambda values ==='
-c       write(*,*) '  p1 (non-carrier freq)=', p1, ' p2 (carrier freq)=', p2
        do iage=0,89
 
           lambda(iage,0)=(popbr(iage)/100000.0d0)*
@@ -520,12 +404,6 @@ c       write(*,*) '  p1 (non-carrier freq)=', p1, ' p2 (carrier freq)=', p2
      :              (p1*ffncbr(iage)+p2*rrbr(iage)*ffbr(iage))
 
           lambda(iage,1)=lambda(iage,0)*rrbr(iage)
-          
-c          if(iage.eq.0 .or. iage.eq.30 .or. iage.eq.60) then
-c            write(*,*) '  Age ', iage, ': lambda(nc)=', lambda(iage,0),
-c     :                ' lambda(c)=', lambda(iage,1),
-c     :                ' popbr=', popbr(iage), ' rrbr=', rrbr(iage)
-c          endif
 
 
 
@@ -571,22 +449,12 @@ c Assume a  dominant model. So carriers denoted
 c by is=2 and non carriers by  is=1
 c---------------------------------------------------------------------
 
-c     Debug output commented out for now
-c      write(*,*) '=== APEN: ped=', ped, ' per=', per, 
-c     :           ' male=', male, ' ngtype=', ngtype
-c      write(*,*) '  Age info: agebc=', agebc, ' agelfu=', agelfu,
-c     :           ' age=', age, ' idis=', idis
-
       DO 10 I=1,NGTYPE
 
        if(genes(1,1,I).eq.1.and.genes(1,2,I).eq.1) then
         is=1
        else
         is=2
-       endif
-       if(ped.eq.1 .and. per.le.3 .and. I.eq.1) then
-         write(*,*) '  Genotype ', I, ': genes=', genes(1,1,I), 
-     :            genes(1,2,I), ' carrier status=', is
        endif
 
 
@@ -597,10 +465,6 @@ c Assume that males do not develop either cancer and specify the penetrance
 c for each male as 1*fact
 c---------------------------------------------------------------------
 
-
-      if(isex.eq.1) then
-           pen(i)=1.0d0
-      else
 
 
 c---------------------------------------------------------------------
@@ -667,13 +531,8 @@ c=====================================================================
 
 
 
-      endif
 
-
-      if(ped.eq.1 .and. per.le.2) then
-        write(*,*) '  Final pen(', i, ')=', pen(i),
-     :           ' for age=', age, ' idis=', idis, ' is=', is
-      endif
+c	write(*,*) ped, per, age, pen(i)
 
 10    continue
       return
@@ -700,9 +559,6 @@ C
 
       allfrq(1,2)=0.0004d0
       allfrq(1,1)=1.0d0-allfrq(1,2)
-c      write(*,*) '=== APRIOR: Allele frequencies set ==='
-c      write(*,*) '  allfrq(1,1)=', allfrq(1,1),
-c     :           ' allfrq(1,2)=', allfrq(1,2)
 
 
 
