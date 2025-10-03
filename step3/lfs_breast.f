@@ -352,11 +352,13 @@ c Define the censoring variable in the data. If icens=1 then the individual
 c is censored at birth.
 c---------------------------------------------------------------------
 
-       agebc  = var(1)
+c      TEMPORARY FIX: The breast cancer age appears to be in var(5)
+c      instead of var(1) in the current data file
+       agebc  = var(5)   ! Was var(1), but data has BC age in column 5
        agebc2 = var(2)
        ageoc  = var(3)
        ageother=var(4)
-       ageother2=var(5)
+       ageother2=var(1)  ! Swap with var(5)
        agelfu = var(6)
        agedeath= var(7)
        
@@ -442,7 +444,10 @@ C Censor at the first cancer.
 
 	if (age.eq.agebc .and. agebc.gt.0) idis=1
 
-c	write(*,*) agebc,ageoc,ageother,agelfu,agedeath,age,idis
+	if(ped.eq.1 .and. per.le.3) then
+	  write(*,*) 'Disease determination: age=', age, 
+     :             ' agebc=', agebc, ' -> idis=', idis
+	endif
 
 
 c---------------------------------------------------------------------
@@ -452,6 +457,10 @@ c---------------------------------------------------------------------
        if(age.ge.90) then
           idis=0
           age=90
+       endif
+       
+       if(ped.eq.1 .and. per.le.3) then
+         write(*,*) 'After all processing: age=', age, ' idis=', idis
        endif
 
 
